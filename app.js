@@ -38,27 +38,29 @@ function deleteCheck(button)
 
 function filterTodo(filter) 
 {
-    const todoItems = todoList.childNodes;
-    todoItems.forEach(item => 
+    const todoListItems = [...document.querySelectorAll('.todo')];
+    todoListItems.forEach(item => 
         {
             switch (filter) {
                 case "completed":
-                    if (item.nextElementSibling.classList.contains('completed')) 
+                    item.style.display = "flex";
+                    if (!item.classList.contains('completed')) 
                     {
-                        item.display = "flex";
-                    }
-                    else
-                    {
-                        item.display = 'none';
+                        item.style.display = "none";
                     }
                 break;
 
                 case "uncompleted":
+                    item.style.display = "flex";
+                    if (item.classList.contains('completed')) 
+                    {
+                        item.style.display = "none";
+                    }
                 break;
 
                 //default case    
                 case "all":
-                    item.display = "flex";
+                    item.style.display = "flex";
                 break;
             }
         });
